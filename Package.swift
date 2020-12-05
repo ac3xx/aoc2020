@@ -6,7 +6,8 @@ import PackageDescription
 let package = Package(
     name: "aoc2020",
     products: [
-        .executable(name: "day1", targets: ["day1"])
+        .executable(name: "day1", targets: ["day1"]),
+        .executable(name: "day2", targets: ["day2"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.0"),
@@ -22,5 +23,10 @@ let package = Package(
         .testTarget(
             name: "day1Tests",
             dependencies: ["day1"]),
+        .target(
+            name: "day2",
+            dependencies: [
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+            ])
     ]
 )
