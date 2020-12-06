@@ -7,6 +7,7 @@ let package = Package(
     name: "aoc2020",
     products: [
         .executable(name: "aoc2020", targets: ["aoc2020"]),
+        .library(name: "aoc2020lib", targets: ["aoc2020lib"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.0"),
@@ -17,6 +18,11 @@ let package = Package(
             name: "aoc2020",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                .byName(name: "aoc2020lib")
+            ]),
+        .target(
+            name: "aoc2020lib",
+            dependencies: [
                 .byName(name: "Combinatorics")
             ]),
         .testTarget(

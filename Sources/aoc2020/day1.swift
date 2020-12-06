@@ -2,6 +2,8 @@ import ArgumentParser
 import Foundation
 import Combinatorics
 
+import aoc2020lib
+
 extension AOC2020 {
     struct Day1: ParsableCommand {
         @OptionGroup var options: AOC2020.Options
@@ -10,25 +12,18 @@ extension AOC2020 {
         var target: Int = 2020
         
         mutating func run() throws {
+            let expenseReport = aoc2020lib.ExpenseReport(target: target)
             let inputPath = options.inputPath ?? "Inputs/day1.txt"
-            let numExpenses = options.part2 ? 3 : 2
             
             let inputString =  try String(contentsOf: URL(fileURLWithPath: inputPath))
             
-            if let output = searchReport(input: inputString, size: numExpenses) {
-                print("\(output)")
-            } else {
-                fatalError("no combination found")
+            if let part1 = expenseReport.part1(input: inputString) {
+                print("part1: \(part1)")
             }
-        }
-        
-        func searchReport(input: String, size: Int) -> Int? {
-            let lines = input.split(whereSeparator: \.isNewline)
-            let expenseReport = lines.compactMap({ Int($0) })
             
-            let expensePairs = Combination(of: expenseReport, size: size)
-            
-            return expensePairs.first(where: { $0.reduce(0, +) == target })?.reduce(1, *)
+            if let part2 = expenseReport.part2(input: inputString) {
+                print("part2: \(part2)")
+            }
         }
     }
 }
