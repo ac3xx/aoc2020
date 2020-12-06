@@ -9,7 +9,8 @@ let package = Package(
         .executable(name: "day1", targets: ["day1"]),
         .executable(name: "day2", targets: ["day2"]),
         .executable(name: "day3", targets: ["day3"]),
-        .executable(name: "day4", targets: ["day4"])
+        .executable(name: "day4", targets: ["day4"]),
+        .executable(name: "day5", targets: ["day5"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.0"),
@@ -37,6 +38,11 @@ let package = Package(
             ]),
         .target(
             name: "day4",
+            dependencies: [
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+            ]),
+        .target(
+            name: "day5",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ])
