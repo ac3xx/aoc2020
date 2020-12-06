@@ -14,13 +14,30 @@ struct Day5: ParsableCommand {
         
         let seats = parseSeats(input: lines)
         
-        if let part1 = part1(seats: seats) {
+        if part2, let part2 = part2(seats: seats) {
+            print(part2)
+        } else if !part2, let part1 = part1(seats: seats) {
             print(part1)
         }
     }
     
     func part1(seats: [Seat]) -> Int? {
         return seats.map({ $0.id }).max()
+    }
+    
+    func part2(seats: [Seat]) -> Int? {
+        let allSeatIDs = Set(0...1023)
+        let allocatedSeatIDs = Set(seats.map({ $0.id }))
+        
+        let unallocatedSeatIDs = allSeatIDs.subtracting(allocatedSeatIDs)
+        
+        for seatID in unallocatedSeatIDs {
+            if allocatedSeatIDs.contains(seatID-1) && allocatedSeatIDs.contains(seatID+1) {
+                return seatID
+            }
+        }
+        
+        return nil
     }
     
     func parseSeats(input: [String]) -> [Seat] {
