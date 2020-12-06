@@ -6,11 +6,7 @@ import PackageDescription
 let package = Package(
     name: "aoc2020",
     products: [
-        .executable(name: "day1", targets: ["day1"]),
-        .executable(name: "day2", targets: ["day2"]),
-        .executable(name: "day3", targets: ["day3"]),
-        .executable(name: "day4", targets: ["day4"]),
-        .executable(name: "day5", targets: ["day5"])
+        .executable(name: "aoc2020", targets: ["aoc2020"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.0"),
@@ -18,33 +14,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "day1",
+            name: "aoc2020",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .byName(name: "Combinatorics")
             ]),
         .testTarget(
-            name: "day1Tests",
-            dependencies: ["day1"]),
-        .target(
-            name: "day2",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ]),
-        .target(
-            name: "day3",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ]),
-        .target(
-            name: "day4",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ]),
-        .target(
-            name: "day5",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ])
+            name: "aoc2020Tests",
+            dependencies: ["aoc2020"])
     ]
 )

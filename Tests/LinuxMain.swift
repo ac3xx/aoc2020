@@ -1,7 +1,7 @@
 import XCTest
 
-import day1Tests
+import aoc2020Tests
 
 var tests = [XCTestCaseEntry]()
-tests += day1Tests.allTests()
+tests += aoc2020Tests.allTests()
 XCTMain(tests)
