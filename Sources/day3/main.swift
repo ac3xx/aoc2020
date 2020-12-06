@@ -16,11 +16,25 @@ struct Day3: ParsableCommand {
         
         if !part2 {
             print(part1(grid: grid))
+        } else {
+            print(part2(grid: grid))
         }
     }
     
     func part1(grid: Grid) -> Int {
         return countTrees(grid: grid, moveVec: Point(x: 3, y: 1))
+    }
+    
+    func part2(grid: Grid) -> Int {
+        let moveVecs = [
+            Point(x: 1, y: 1),
+            Point(x: 3, y: 1),
+            Point(x: 5, y: 1),
+            Point(x: 7, y: 1),
+            Point(x: 1, y: 2)
+        ]
+        
+        return moveVecs.map({ countTrees(grid: grid, moveVec: $0) }).reduce(1, *)
     }
     
     func countTrees(grid: Grid, moveVec: Point) -> Int {
